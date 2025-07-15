@@ -1,82 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
+ <meta charset="UTF-8" />
  <title>User Registration</title>
  <link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.
-min.css" rel="stylesheet">
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+ />
  <style>
- body {
- background-color: #f7f7f7;
- }
-Mrs. D. Sree Lakshmi | Assistant Professor | IT Department | GNITS
- .form-container {
- margin-top: 50px;
- padding: 30px;
- background: white;
- border-radius: 10px;
- box-shadow: 0 0 10px rgba(0,0,0,0.15);
- }
+  body {
+    background-color: #f7f7f7;
+  }
+  .form-container {
+    margin-top: 50px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  }
  </style>
 </head>
 <body>
 <div class="container">
  <div class="row justify-content-md-center">
- <div class="col-md-6 form-container">
- <h2 class="text-center mb-4">User Registration Form</h2>
- <form method="POST" action="/">
- <div class="mb-3">
- <label class="form-label">Full Name</label>
- <input type="text" class="form-control" name="full_name">
- </div>
- <div class="mb-3">
- <label class="form-label">Email Address</label>
- <input type="email" class="form-control" name="email">
- </div>
- <div class="mb-3">
- <label class="form-label">Username</label>
- <input type="text" class="form-control" name="username">
- </div>
- <div class="mb-3">
- <label class="form-label">Password</label>
- <input type="password" class="form-control"
-name="password">
- </div>
- <div class="mb-3">
- <label class="form-label">Confirm Password</label>
-Mrs. D. Sree Lakshmi | Assistant Professor | IT Department | GNITS
- <input type="password" class="form-control"
-name="confirm_password">
- </div>
- <div class="mb-3">
- <label class="form-label">Phone Number</label>
- <input type="tel" class="form-control" name="phone">
- </div>
- <div class="mb-3">
- <label class="form-label">Date of Birth</label>
- <input type="date" class="form-control" name="dob">
- </div>
- <div class="mb-3">
- <label class="form-label">Gender</label>
- <select class="form-select" name="gender">
- <option value="">Select Gender</option>
- <option>Male</option>
- <option>Female</option>
- <option>Other</option>
- </select>
- </div>
- <div class="mb-3">
- <label class="form-label">Address</label>
- <textarea class="form-control" rows="3"
-name="address"></textarea>
- </div>
- <div class="text-center">
- <button type="submit" class="btn btn-primary px5">Register</button>
- </div>
- </form>
- </div>
+   <div class="col-md-6 form-container">
+     <h2 class="text-center mb-4">User Registration Form</h2>
+     <form method="POST" action="/" id="registrationForm" novalidate>
+       <div class="mb-3">
+         <label class="form-label" for="full_name">Full Name</label>
+         <input
+           type="text"
+           class="form-control"
+           name="full_name"
+           id="full_name"
+           required
+           minlength="2"
+           maxlength="50"
+           pattern="^[a-zA-Z\s]+$"
+           title="Full Name should only contain letters and spaces"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="email">Email Address</label>
+         <input
+           type="email"
+           class="form-control"
+           name="email"
+           id="email"
+           required
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="username">Username</label>
+         <input
+           type="text"
+           class="form-control"
+           name="username"
+           id="username"
+           required
+           minlength="4"
+           maxlength="20"
+           pattern="^[a-zA-Z0-9._-]+$"
+           title="Username can contain letters, numbers, dots, underscores and hyphens"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="password">Password</label>
+         <input
+           type="password"
+           class="form-control"
+           name="password"
+           id="password"
+           required
+           minlength="8"
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
+           title="Password must be at least 8 characters and include uppercase, lowercase, and a number"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="confirm_password">Confirm Password</label>
+         <input
+           type="password"
+           class="form-control"
+           name="confirm_password"
+           id="confirm_password"
+           required
+           minlength="8"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="phone">Phone Number</label>
+         <input
+           type="tel"
+           class="form-control"
+           name="phone"
+           id="phone"
+           pattern="^\+?\d{10,15}$"
+           title="Phone number should be 10 to 15 digits, optional leading +"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="dob">Date of Birth</label>
+         <input
+           type="date"
+           class="form-control"
+           name="dob"
+           id="dob"
+           required
+           max="<?php echo date('Y-m-d'); ?>"
+         />
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="gender">Gender</label>
+         <select class="form-select" name="gender" id="gender" required>
+           <option value="">Select Gender</option>
+           <option>Male</option>
+           <option>Female</option>
+           <option>Other</option>
+         </select>
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="address">Address</label>
+         <textarea
+           class="form-control"
+           rows="3"
+           name="address"
+           id="address"
+           required
+           minlength="10"
+           maxlength="200"
+         ></textarea>
+       </div>
+       <div class="text-center">
+         <button type="submit" class="btn btn-primary px-5">Register</button>
+       </div>
+     </form>
+   </div>
  </div>
 </div>
+
+<script>
+  const form = document.getElementById("registrationForm");
+  form.addEventListener("submit", function (event) {
+    // Clear previous custom validity
+    const password = form.password;
+    const confirmPassword = form.confirm_password;
+
+    if (password.value !== confirmPassword.value) {
+      confirmPassword.setCustomValidity("Passwords do not match");
+    } else {
+      confirmPassword.setCustomValidity("");
+    }
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+      form.classList.add("was-validated");
+    }
+  });
+</script>
 </body>
 </html>
